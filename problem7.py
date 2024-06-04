@@ -46,3 +46,13 @@ y = sigmoid(z_tmp)
 np.set_printoptions(precision=3)
 print("Input (z), Output (sigmoid(z))")
 print(np.c_[z_tmp, y])
+
+
+# Plot z vs sigmoid(z)
+fig,ax = plt.subplots(1,1,figsize=(5,3))
+ax.plot(z_tmp, y, c="b")
+
+ax.set_title("Sigmoid function")
+ax.set_ylabel('sigmoid(z)')
+ax.set_xlabel('z')
+draw_vthresh(ax,0)
