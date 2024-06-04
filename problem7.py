@@ -56,3 +56,9 @@ ax.set_title("Sigmoid function")
 ax.set_ylabel('sigmoid(z)')
 ax.set_xlabel('z')
 draw_vthresh(ax,0)
+
+x_train = np.array([0., 1, 2, 3, 4, 5])
+y_train = np.array([0,  0, 0, 1, 1, 1])
+
+w_in = np.zeros((1))
+b_in = 0
