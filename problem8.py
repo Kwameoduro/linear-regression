@@ -14,3 +14,17 @@ ax.axis([0, 4, 0, 3.5])
 ax.set_ylabel('$x_1$')
 ax.set_xlabel('$x_0$')
 plt.show()
+
+# Plot sigmoid(z) over a range of values from -10 to 10
+z = np.arange(-10,11)
+
+fig,ax = plt.subplots(1,1,figsize=(5,3))
+# Plot z vs sigmoid(z)
+ax.plot(z, sigmoid(z), c="b")
+
+ax.set_title("Sigmoid function")
+ax.set_ylabel('sigmoid(z)')
+ax.set_xlabel('z')
+draw_vthresh(ax,0)
+
+
