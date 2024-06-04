@@ -62,3 +62,7 @@ y_train = np.array([0,  0, 0, 1, 1, 1])
 
 w_in = np.zeros((1))
 b_in = 0
+
+
+plt.close('all')
+addpt = plt_one_addpt_onclick( x_train,y_train, w_in, b_in, logistic=True)
