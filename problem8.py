@@ -28,3 +28,20 @@ ax.set_xlabel('z')
 draw_vthresh(ax,0)
 
 
+# Choose values between 0 and 6
+x0 = np.arange(0,6)
+
+x1 = 3 - x0
+fig,ax = plt.subplots(1,1,figsize=(5,4))
+# Plot the decision boundary
+ax.plot(x0,x1, c="b")
+ax.axis([0, 4, 0, 3.5])
+
+# Fill the region below the line
+ax.fill_between(x0,x1, alpha=0.2)
+
+# Plot the original data
+plot_data(X,y,ax)
+ax.set_ylabel(r'$x_1$')
+ax.set_xlabel(r'$x_0$')
+plt.show()
