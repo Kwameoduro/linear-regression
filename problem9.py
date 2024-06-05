@@ -10,3 +10,7 @@ soup_bowl()
 x_train = np.array([0., 1, 2, 3, 4, 5],dtype=np.longdouble)
 y_train = np.array([0,  0, 0, 1, 1, 1],dtype=np.longdouble)
 plt_simple_example(x_train, y_train)
+
+plt.close('all')
+plt_logistic_squared_error(x_train,y_train)
+plt.show()
