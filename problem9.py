@@ -14,3 +14,7 @@ plt_simple_example(x_train, y_train)
 plt.close('all')
 plt_logistic_squared_error(x_train,y_train)
 plt.show()
+
+plt_two_logistic_loss_curves()
+plt.close('all')
+cst = plt_logistic_cost(x_train,y_train)
