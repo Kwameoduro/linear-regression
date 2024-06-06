@@ -133,3 +133,15 @@ x0 = -b_out/w_out[0]
 x1 = -b_out/w_out[1]
 ax.plot([0,x0],[x1,0], c=dlc["dlblue"], lw=1)
 plt.show()
+
+# another data set
+x_train = np.array([0., 1, 2, 3, 4, 5])
+y_train = np.array([0,  0, 0, 1, 1, 1])
+
+fig,ax = plt.subplots(1,1,figsize=(4,3))
+plt_tumor_data(x_train, y_train, ax)
+plt.show()
+
+w_range = np.array([-1, 7])
+b_range = np.array([1, -14])
+quad = plt_quad_logistic( x_train, y_train, w_range, b_range )
