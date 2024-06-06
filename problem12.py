@@ -45,3 +45,11 @@ def compute_gradient_logistic(X, y, w, b):
     dj_db = dj_db / m  # scalar
 
     return dj_db, dj_dw
+
+X_tmp = np.array([[0.5, 1.5], [1,1], [1.5, 0.5], [3, 0.5], [2, 2], [1, 2.5]])
+y_tmp = np.array([0, 0, 0, 1, 1, 1])
+w_tmp = np.array([2.,3.])
+b_tmp = 1.
+dj_db_tmp, dj_dw_tmp = compute_gradient_logistic(X_tmp, y_tmp, w_tmp, b_tmp)
+print(f"dj_db: {dj_db_tmp}" )
+print(f"dj_dw: {dj_dw_tmp.tolist()}" )
