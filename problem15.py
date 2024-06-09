@@ -81,3 +81,56 @@ sigmoid_test(sigmoid)
 # output: sigmoid([ -1, 0, 1, 2]) = [0.26894142 0.5        0.73105858 0.88079708]
 
 
+def compute_cost(X, y, w, b, *argv):
+    m, n = X.shape
+
+    ### START CODE HERE ###
+    loss_sum = 0
+
+    for i in range(m):
+        z_wb = 0
+
+        for j in range(n):
+            z_wb_ij = w[j] * X[i][j]
+            z_wb += z_wb_ij
+
+        z_wb += b
+        f_wb = sigmoid(z_wb)
+        loss = -y[i] * np.log(f_wb) - (1 - y[i]) * np.log(1 - f_wb)
+        loss_sum += loss
+
+    total_cost = (1 / m) * loss_sum
+
+    ### END CODE HERE ###
+
+    return total_cost
+
+m, n = X_train.shape
+
+# Compute and display cost with w and b initialized to zeros
+initial_w = np.zeros(n)
+initial_b = 0.
+cost = compute_cost(X_train, y_train, initial_w, initial_b)
+print('Cost at initial w and b (zeros): {:.3f}'.format(cost))
+
+"""
+output:
+
+Cost at initial w and b (zeros): 0.693
+
+"""
+
+# Compute and display cost with non-zero w and b
+test_w = np.array([0.2, 0.2])
+test_b = -24.
+cost = compute_cost(X_train, y_train, test_w, test_b)
+
+print('Cost at test w and b (non-zeros): {:.3f}'.format(cost))
+
+
+# UNIT TESTS
+compute_cost_test(compute_cost)
+
+# output: Cost at test w and b (non-zeros): 0.218
+
+
