@@ -61,3 +61,23 @@ plt.xlabel('Exam 1 score')
 plt.legend(loc="upper right")
 plt.show()
 
+
+def sigmoid(z):
+    g = 1 / (1 + np.exp(-z))
+
+    return g
+
+value = 0
+print (f"sigmoid({value}) = {sigmoid(value)}")
+
+# output: sigmoid(0) = 0.5
+
+print ("sigmoid([ -1, 0, 1, 2]) = " + str(sigmoid(np.array([-1, 0, 1, 2]))))
+
+# UNIT TESTS
+from public_tests import *
+sigmoid_test(sigmoid)
+
+# output: sigmoid([ -1, 0, 1, 2]) = [0.26894142 0.5        0.73105858 0.88079708]
+
+
