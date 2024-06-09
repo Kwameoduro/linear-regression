@@ -259,3 +259,50 @@ plt.xlabel('Exam 1 score')
 plt.legend(loc="upper right")
 plt.show()
 
+import numpy as np
+
+
+def sigmoid(z):
+    return 1 / (1 + np.exp(-z))
+
+
+def predict(X, w, b):
+
+    # number of training examples
+    m, n = X.shape
+    p = np.zeros(m)
+
+
+    for i in range(m):
+        z_wb = np.dot(X[i], w) + b
+        f_wb = sigmoid(z_wb)
+        p[i] = 1 if f_wb >= 0.5 else 0
+
+
+    return p
+
+np.random.seed(1)
+tmp_w = np.random.randn(2)
+tmp_b = 0.3
+tmp_X = np.random.randn(4, 2) - 0.5
+
+tmp_p = predict(tmp_X, tmp_w, tmp_b)
+print(f'Output of predict: shape {tmp_p.shape}, value {tmp_p}')
+
+# UNIT TESTS
+predict_test(predict)
+
+
+"""
+output:
+Output of predict: shape (4,), value [0. 1. 1. 1.]
+All tests passed!
+
+"""
+
+#Compute accuracy on our training set
+p = predict(X_train, w,b)
+print('Train Accuracy: %f'%(np.mean(p == y_train) * 100))
+
+# output:  Train Accuracy: 92.000000
+
