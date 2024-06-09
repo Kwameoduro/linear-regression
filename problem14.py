@@ -193,3 +193,7 @@ Regularized dj_dw:
  [0.17380012933994293, 0.32007507881566943, 0.10776313396851499]
 
 """
+
+plt.close("all")
+display(output)
+ofit = overfit_example(True)
