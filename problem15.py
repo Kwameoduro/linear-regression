@@ -431,3 +431,47 @@ All tests passed!
 
 """
 
+
+def compute_gradient_reg(X, y, w, b, lambda_=1):
+
+    m, n = X.shape
+
+    dj_db, dj_dw = compute_gradient(X, y, w, b)
+
+
+    for j in range(n):
+        dj_dw_j_reg = (lambda_ / m) * w[j]
+
+        # Add the regularization term  to the correspoding element of dj_dw
+        dj_dw[j] = dj_dw[j] + dj_dw_j_reg
+
+
+
+    return dj_db, dj_dw
+
+
+X_mapped = map_feature(X_train[:, 0], X_train[:, 1])
+np.random.seed(1)
+initial_w = np.random.rand(X_mapped.shape[1]) - 0.5
+initial_b = 0.5
+
+lambda_ = 0.5
+dj_db, dj_dw = compute_gradient_reg(X_mapped, y_train, initial_w, initial_b, lambda_)
+
+print(f"dj_db: {dj_db}", )
+print(f"First few elements of regularized dj_dw:\n {dj_dw[:4].tolist()}", )
+
+# UNIT TESTS
+compute_gradient_reg_test(compute_gradient_reg)
+
+
+"""
+output:
+
+dj_db: 0.07138288792343662
+First few elements of regularized dj_dw:
+ [-0.010386028450548701, 0.011409852883280122, 0.0536273463274574, 0.0031402782673134655]
+All tests passed!
+
+"""
+
