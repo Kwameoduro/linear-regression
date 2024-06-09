@@ -306,3 +306,82 @@ print('Train Accuracy: %f'%(np.mean(p == y_train) * 100))
 
 # output:  Train Accuracy: 92.000000
 
+
+
+# load dataset
+X_train, y_train = load_data("data/ex2data2.txt")
+
+# print X_train
+print("X_train:", X_train[:5])
+print("Type of X_train:",type(X_train))
+
+# print y_train
+print("y_train:", y_train[:5])
+print("Type of y_train:",type(y_train))
+
+"""
+output: 
+
+X_train: [[ 0.051267  0.69956 ]
+ [-0.092742  0.68494 ]
+ [-0.21371   0.69225 ]
+ [-0.375     0.50219 ]
+ [-0.51325   0.46564 ]]
+Type of X_train: <class 'numpy.ndarray'>
+y_train: [1. 1. 1. 1. 1.]
+Type of y_train: <class 'numpy.ndarray'>
+
+"""
+
+print ('The shape of X_train is: ' + str(X_train.shape))
+print ('The shape of y_train is: ' + str(y_train.shape))
+print ('We have m = %d training examples' % (len(y_train)))
+
+"""
+output:
+The shape of X_train is: (118, 2)
+The shape of y_train is: (118,)
+We have m = 118 training examples
+
+"""
+
+# Plot examples
+plot_data(X_train, y_train[:], pos_label="Accepted", neg_label="Rejected")
+
+# Set the y-axis label
+plt.ylabel('Microchip Test 2')
+# Set the x-axis label
+plt.xlabel('Microchip Test 1')
+plt.legend(loc="upper right")
+plt.show()
+
+print("Original shape of data:", X_train.shape)
+
+mapped_X =  map_feature(X_train[:, 0], X_train[:, 1])
+print("Shape after feature mapping:", mapped_X.shape)
+
+"""
+output:
+
+Original shape of data: (118, 2)
+Shape after feature mapping: (118, 27)
+
+"""
+
+print("X_train[0]:", X_train[0])
+print("mapped X_train[0]:", mapped_X[0])
+
+"""
+output:
+
+X_train[0]: [0.051267 0.69956 ]
+mapped X_train[0]: [5.12670000e-02 6.99560000e-01 2.62830529e-03 3.58643425e-02
+ 4.89384194e-01 1.34745327e-04 1.83865725e-03 2.50892595e-02
+ 3.42353606e-01 6.90798869e-06 9.42624411e-05 1.28625106e-03
+ 1.75514423e-02 2.39496889e-01 3.54151856e-07 4.83255257e-06
+ 6.59422333e-05 8.99809795e-04 1.22782870e-02 1.67542444e-01
+ 1.81563032e-08 2.47750473e-07 3.38066048e-06 4.61305487e-05
+ 6.29470940e-04 8.58939846e-03 1.17205992e-01]
+
+"""
+
