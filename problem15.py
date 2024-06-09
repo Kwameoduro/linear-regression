@@ -385,3 +385,49 @@ mapped X_train[0]: [5.12670000e-02 6.99560000e-01 2.62830529e-03 3.58643425e-02
 
 """
 
+
+def compute_cost_reg(X, y, w, b, lambda_=1):
+
+
+    m, n = X.shape
+
+    # Calls the compute_cost function that you implemented above
+    cost_without_reg = compute_cost(X, y, w, b)
+
+    # You need to calculate this value
+    reg_cost = 0.
+
+
+    for j in range(n):
+        reg_cost_j = w[j] ** 2
+        reg_cost = reg_cost + reg_cost_j
+    reg_cost = (lambda_ / (2 * m)) * reg_cost
+
+    ### END CODE HERE ###
+
+    # Add the regularization cost to get the total cost
+    total_cost = cost_without_reg + reg_cost
+
+    return total_cost
+
+X_mapped = map_feature(X_train[:, 0], X_train[:, 1])
+np.random.seed(1)
+initial_w = np.random.rand(X_mapped.shape[1]) - 0.5
+initial_b = 0.5
+lambda_ = 0.5
+cost = compute_cost_reg(X_mapped, y_train, initial_w, initial_b, lambda_)
+
+print("Regularized cost :", cost)
+
+# UNIT TEST
+compute_cost_reg_test(compute_cost_reg)
+
+
+"""
+output:
+
+Regularized cost : 0.6618252552483948
+All tests passed!
+
+"""
+
