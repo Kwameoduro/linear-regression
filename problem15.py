@@ -134,3 +134,62 @@ compute_cost_test(compute_cost)
 # output: Cost at test w and b (non-zeros): 0.218
 
 
+def sigmoid(z):
+    return 1 / (1 + np.exp(-z))
+
+
+def compute_gradient(X, y, w, b, *argv):
+
+    m, n = X.shape
+    dj_dw = np.zeros(w.shape)
+    dj_db = 0.
+
+    ### START CODE HERE ###
+    for i in range(m):
+        z_wb = np.dot(X[i], w) + b
+        f_wb = sigmoid(z_wb)
+
+        dj_db += f_wb - y[i]
+
+        for j in range(n):
+            dj_dw[j] += (f_wb - y[i]) * X[i, j]
+
+    dj_dw = dj_dw / m
+    dj_db = dj_db / m
+
+
+    return dj_db, dj_dw
+
+initial_w = np.zeros(n)
+initial_b = 0.
+
+dj_db, dj_dw = compute_gradient(X_train, y_train, initial_w, initial_b)
+print(f'dj_db at initial w and b (zeros):{dj_db}' )
+print(f'dj_dw at initial w and b (zeros):{dj_dw.tolist()}' )
+
+"""
+output:
+dj_db at initial w and b (zeros):-0.1
+dj_dw at initial w and b (zeros):[-12.00921658929115, -11.262842205513591]
+
+
+"""
+
+test_w = np.array([ 0.2, -0.5])
+test_b = -24
+dj_db, dj_dw  = compute_gradient(X_train, y_train, test_w, test_b)
+
+print('dj_db at test w and b:', dj_db)
+print('dj_dw at test w and b:', dj_dw.tolist())
+
+# UNIT TESTS
+compute_gradient_test(compute_gradient)
+
+"""
+output:
+dj_db at test w and b: -0.5999999999991071
+dj_dw at test w and b: [-44.831353617873795, -44.37384124953978]
+All tests passed!
+
+"""
+
