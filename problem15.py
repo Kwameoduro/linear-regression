@@ -475,3 +475,48 @@ All tests passed!
 
 """
 
+
+np.random.seed(1)
+initial_w = np.random.rand(X_mapped.shape[1])-0.5
+initial_b = 1.
+
+# Set regularization parameter lambda_ (you can try varying this)
+lambda_ = 0.01
+
+# Some gradient descent settings
+iterations = 10000
+alpha = 0.01
+
+w,b, J_history,_ = gradient_descent(X_mapped, y_train, initial_w, initial_b,  compute_cost_reg, compute_gradient_reg, alpha, iterations, lambda_)
+
+"""
+output:
+
+Iteration    0: Cost     0.72   
+Iteration 1000: Cost     0.59   
+Iteration 2000: Cost     0.56   
+Iteration 3000: Cost     0.53   
+Iteration 4000: Cost     0.51   
+Iteration 5000: Cost     0.50   
+Iteration 6000: Cost     0.48   
+Iteration 7000: Cost     0.47   
+Iteration 8000: Cost     0.46   
+Iteration 9000: Cost     0.45   
+Iteration 9999: Cost     0.45 
+
+
+"""
+
+plot_decision_boundary(w, b, X_mapped, y_train)
+# Set the y-axis label
+plt.ylabel('Microchip Test 2')
+# Set the x-axis label
+plt.xlabel('Microchip Test 1')
+plt.legend(loc="upper right")
+plt.show()
+
+p = predict(X_mapped, w, b)
+
+print('Train Accuracy: %f'%(np.mean(p == y_train) * 100))
+# output:  Train Accuracy: 82.203390
+
